@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: postgres
+  user: postgres
+  password: postgres
+
+development:
+  <<: *default
+  database: onebitchat_development
+
+test:
+  <<: *default
+  database: onebitchat_exchance_test
+
+production:
+  <<: *default
+  database: onebitchat_exchance_production
