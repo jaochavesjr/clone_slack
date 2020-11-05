@@ -11,7 +11,7 @@ RSpec.describe TeamsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
-      get :index
+      get :index, xhr: true
       expect(response).to have_http_status(:success)
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe TeamsController, type: :controller do
       context "User is the owner of the team" do
         it "Returns success" do
           team = create(:team, user: @current_user)
-          get :show, params: {slug: team.slug}
+          get :show, params: {slug: team.slug}, xhr: true
 
           expect(response).to have_http_status(:success)
         end
@@ -32,7 +32,7 @@ RSpec.describe TeamsController, type: :controller do
         it "Returns success" do
           team = create(:team)
           team.users << @current_user
-          get :show, params: {slug: team.slug}
+          get :show, params: {slug: team.slug}, xhr: true
 
           expect(response).to have_http_status(:success)
         end
